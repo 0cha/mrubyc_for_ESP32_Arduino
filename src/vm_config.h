@@ -47,7 +47,7 @@
 
 /* maximum size of global objects */
 #ifndef MAX_GLOBAL_OBJECT_SIZE
-#define MAX_GLOBAL_OBJECT_SIZE 20
+#define MAX_GLOBAL_OBJECT_SIZE 30
 #endif
 
 /* maximum size of consts */
@@ -64,7 +64,7 @@
 #define MRBC_USE_FLOAT 1
 
 /* USE Math class */
-#define MRBC_USE_MATH 0
+#define MRBC_USE_MATH 1
 
 /* USE String. Support String class */
 #define MRBC_USE_STRING 1

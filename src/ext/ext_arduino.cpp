@@ -108,6 +108,18 @@ static void class_arduino_digital_read(mrb_vm *vm, mrb_value *v, int argc )
 	sig = digitalRead(pin);
 	SET_INT_RETURN(sig);
 }
+static void class_arduino_analog_read(mrb_vm *vm, mrb_value *v, int argc )
+{
+	int pin = 0;
+	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+		pin = GET_INT_ARG(1);
+	}else{
+		SET_FALSE_RETURN();
+		return;
+	}
+	uint16_t val = analogRead(pin);
+	SET_INT_RETURN(val);
+}
 
 static void class_arduino_random(mrb_vm *vm, mrb_value *v, int argc )
 {
@@ -149,25 +161,22 @@ void define_arduino_class()
 	mrbc_define_method(0, class_arduino, "pin_mode", class_arduino_pin_mode);
 	mrbc_define_method(0, class_arduino, "digital_write", class_arduino_digital_wirte);
 	mrbc_define_method(0, class_arduino, "digital_read", class_arduino_digital_read);
+  mrbc_define_method(0, class_arduino, "analog_read", class_arduino_analog_read);
 	mrbc_define_method(0, class_arduino, "random", class_arduino_random);
 
 }
 
 static HardwareSerial* HwSerial = NULL;
+static HardwareSerial MySerial(2);
 
 static void class_serial_begin(mrb_vm *vm, mrb_value *v, int argc )
 {
-  //TODO: re-consider better interface implementation
-  //      Pin no should be set by user
-  if(HwSerial==NULL){
-    HwSerial = new HardwareSerial(2);
-    //Don't use Serial1 since these ports are used by SPI-Flash
-  }
-  int baud = GET_INT_ARG(1);
-  DEBUG_PRINT("Serial(2)->begin baudrate=");
-  DEBUG_PRINTLN(baud);
-  HwSerial->begin(baud);
-  SET_TRUE_RETURN();
+	if(HwSerial==NULL)HwSerial = &MySerial;
+	int baud = GET_INT_ARG(1);
+	DEBUG_PRINT("Serial(2)->begin baudrate=");
+	DEBUG_PRINTLN(baud);
+	HwSerial->begin(baud);
+	SET_TRUE_RETURN();
 }
 static void class_serial_end(mrb_vm *vm, mrb_value *v, int argc )
 {
@@ -216,6 +225,9 @@ static void class_serial_write(mrb_vm *vm, mrb_value *v, int argc )
 
 void define_serial_class()
 {
+#ifdef ESP32_DEBUG
+	Serial.begin(DEBUG_SERIAL_BAUDRATE);
+#endif
 	mrb_class *class_serial;
 	class_serial = mrbc_define_class(0, "Serial", mrbc_class_object);
 	mrbc_define_method(0, class_serial, "begin", class_serial_begin);

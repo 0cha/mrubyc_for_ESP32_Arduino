@@ -16,11 +16,14 @@
 #define RECV_BUFF_SIZE 1024
 
 bool mrbc_trans_cppbool_value(mrb_vtype tt);
-
-void define_esp_class(void);
 void define_arduino_class(void);
 void define_serial_class(void);
-
+#ifdef USE_WIFI
+void define_wifi_class(void);
+#endif
+#ifdef USE_HTTP_CLIENT
+void define_http_client_class(void);
+#endif
 #ifdef ARDUINO_M5Stack_Core_ESP32
 void define_m5stack_class(void);
 #ifdef USE_M5AVATAR

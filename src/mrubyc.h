@@ -29,7 +29,7 @@
 #include "c_numeric.h"
 #include "c_range.h"
 #include "c_string.h"
-
+#include "c_math.h"
 #include "load.h"
 #include "console.h"
 #include "rrt0.h"
