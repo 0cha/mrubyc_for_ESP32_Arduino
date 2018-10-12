@@ -28,8 +28,14 @@ void mrbc_define_methods(void)
 #ifdef USE_HTTP_CLIENT
 	define_http_client_class();
 #endif
-#ifdef USE_JSON
-	define_json_class();
+#ifdef USE_BMP085
+  define_bmp085_class();
+#endif
+#ifdef USE_RPR0521RS
+  define_rpr0521rs_class();
+#endif
+#ifdef USE_HC_SR04
+  define_hc_src4_class();
 #endif
 	//define_esp32_class();
 #ifdef ARDUINO_M5Stack_Core_ESP32

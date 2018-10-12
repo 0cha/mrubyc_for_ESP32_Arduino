@@ -24,6 +24,15 @@ void define_wifi_class(void);
 #ifdef USE_HTTP_CLIENT
 void define_http_client_class(void);
 #endif
+#ifdef USE_BMP085
+void define_bmp085_class(void);
+#endif
+#ifdef USE_RPR0521RS
+void define_rpr0521rs_class(void);
+#endif
+#ifdef USE_HC_SR04
+void define_hc_sr04_class(void);
+#endif
 #ifdef ARDUINO_M5Stack_Core_ESP32
 void define_m5stack_class(void);
 #ifdef USE_M5AVATAR

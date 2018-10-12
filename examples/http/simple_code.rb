@@ -23,9 +23,9 @@ class TemperatureSensor
 end
 
 #Lcd display
-Lcd.fill_screen(:WHITE)
-Lcd.set_text_size(3)
-Lcd.set_text_color(:BLACK)
+# Lcd.fill_screen(:WHITE)
+# Lcd.set_text_size(3)
+# Lcd.set_text_color(:BLACK)
 temp_sensor = TemperatureSensor.new
 
 WiFi.connect("aterm-64a087-g","2a6b14815f363")
@@ -37,20 +37,22 @@ end
 http = HTTPClient.new()
 if(WiFi.connected?)
   puts "connected!"
-  http.begin("192.168.2.250", 80, "/iot_rails/temperatures.json")
-  http.addHeader("Content-Type", "application/json")
+  #http.begin("host_address", 80, "/temperatures.json")
+  #http.addHeader("Content-Type", "application/json")
 end
 
 temp = 0.0
 
 while true
    temp = temp_sensor.get(35)
-   Lcd.set_cursor(0,0)
-   Lcd.printf("temp: #{temp}")
-   Lcd.set_cursor(0,21)
-   Lcd.printf("IP: #{WiFi.local_ip}")
-   http.post('{"temperature": {"temp": ' + temp.to_s +  '}}')
-   sleep(300)
-   Lcd.fill_screen(:WHITE)
-   M5.update()
+   # Lcd.set_cursor(0,0)
+   # Lcd.printf("temp: #{temp}")
+   puts "temp: #{temp}"
+   # Lcd.set_cursor(0,21)
+   # Lcd.printf("IP: #{WiFi.local_ip}")
+   puts "IP: #{WiFi.local_ip}"
+   #http.post('{"temperature": {"temp": ' + temp.to_s +  '}}')
+   sleep(10)
+   #Lcd.fill_screen(:WHITE)
+   #M5.update()
 end

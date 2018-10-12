@@ -1,5 +1,5 @@
 #include <mrubyc_for_ESP32_Arduino.h>
-
+#include "Wire.h"
 extern const uint8_t code[];
 
 #define MEMSIZE (1024*50)
@@ -7,6 +7,8 @@ static uint8_t mempool[MEMSIZE];
 
 void setup(){
   Serial.begin(115200);
+  while(!Serial);
+  Wire.begin();
   delay(1000);
 
   Serial.print("-------begin setup");
