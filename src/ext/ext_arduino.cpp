@@ -72,7 +72,7 @@ static void class_arduino_pin_mode(mrb_vm *vm, mrb_value *v, int argc )
 	SET_TRUE_RETURN();
 }
 
-static void class_arduino_digital_wirte(mrb_vm *vm, mrb_value *v, int argc )
+static void class_arduino_digital_write(mrb_vm *vm, mrb_value *v, int argc )
 {
 	int pin = 0;
 	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
@@ -152,18 +152,43 @@ static void class_arduino_random(mrb_vm *vm, mrb_value *v, int argc )
 	i = random(min,max);
 	SET_INT_RETURN(i);
 }
-
+static void class_arduino_delayMicroseconds(mrb_vm *vm, mrb_value *v, int argc ){
+  int32_t time = GET_INT_ARG(1);
+  delayMicroseconds(time);
+}
+static void class_arduino_pulse_in(mrb_vm *vm, mrb_value *v, int argc ){
+  int pin = 0;
+	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+		pin = GET_INT_ARG(1);
+	}else{
+		SET_FALSE_RETURN();
+		return;
+	}
+	mrb_sym sym_in = 0;
+	if(GET_TT_ARG(2) == MRB_TT_SYMBOL){
+		sym_in = GET_INT_ARG(2);
+	}else if(GET_TT_ARG(2) == MRB_TT_STRING){
+		sym_in = str_to_symid((const char *)GET_STRING_ARG(2));
+	}else{
+		SET_FALSE_RETURN();
+		return;
+	}
+	uint8_t sig = sym_to_siglevel( sym_in );
+  
+  SET_INT_RETURN(pulseIn(pin, sig));
+}
 void define_arduino_class()
 {
 	mrb_class *class_arduino;
 	class_arduino = mrbc_define_class(0, "Arduino", mrbc_class_object);
 	mrbc_define_method(0, class_arduino, "delay", class_arduino_delay);
 	mrbc_define_method(0, class_arduino, "pin_mode", class_arduino_pin_mode);
-	mrbc_define_method(0, class_arduino, "digital_write", class_arduino_digital_wirte);
+	mrbc_define_method(0, class_arduino, "digital_write", class_arduino_digital_write);
 	mrbc_define_method(0, class_arduino, "digital_read", class_arduino_digital_read);
-  mrbc_define_method(0, class_arduino, "analog_read", class_arduino_analog_read);
+	mrbc_define_method(0, class_arduino, "analog_read", class_arduino_analog_read);
 	mrbc_define_method(0, class_arduino, "random", class_arduino_random);
-
+	mrbc_define_method(0, class_arduino, "delayMicroseconds", class_arduino_delayMicroseconds);
+  mrbc_define_method(0, class_arduino, "pulseIn", class_arduino_pulse_in);
 }
 
 static HardwareSerial* HwSerial = NULL;
