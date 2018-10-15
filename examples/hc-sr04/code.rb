@@ -1,6 +1,6 @@
 # encoding: utf-8
 class HCSR04
-  attr_accessor :duration, :distance
+  attr_accessor :duration, :distance, :before_distance
   EchoPin = 12
   TrigPin = 13
   def initialize
@@ -17,11 +17,21 @@ class HCSR04
     Arduino.delayMicroseconds(10)
     Arduino.digital_write(TrigPin, :LOW)
     @duration = Arduino.pulseIn(EchoPin, :HIGH)
-
+    
     if(@duration > 0)
       @duration = @duration / 2
       @distance = @duration * (331.5 + (temperature * 0.61)) * 100 / 1000000
+      lpf()
       return @distance # cm
+    end
+  end
+
+  def lpf(a = 0.8)
+    if(!@before_distance)
+      @before_distance = @distance
+    else
+      @distance = a * @before_distance + 0.2 * @distance
+      @before_distance = @distance
     end
   end
 end
