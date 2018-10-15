@@ -20,7 +20,7 @@ class HCSR04
 
     if(@duration > 0)
       @duration = @duration / 2
-      @distance = @duration * ((331.5 + temperature) * 0.61) * 100 / 1000000
+      @distance = @duration * (331.5 + (temperature * 0.61)) * 100 / 1000000
       return @distance # cm
     end
   end
