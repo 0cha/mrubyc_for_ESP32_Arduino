@@ -26,11 +26,11 @@ class HCSR04
     end
   end
 
-  def lpf(a = 0.9)
+  def lpf(a = 0.8)
     if(!@before_distance)
       @before_distance = @distance
     else
-      @distance = (1 - a) * @before_distance + a * @distance
+      @distance = a * @before_distance + (1 - a) * @distance
       @before_distance = @distance
     end
   end
