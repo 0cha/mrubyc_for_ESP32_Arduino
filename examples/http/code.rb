@@ -28,7 +28,7 @@ Lcd.set_text_size(3)
 Lcd.set_text_color(:BLACK)
 temp_sensor = TemperatureSensor.new
 
-WiFi.connect("AP","KEY")
+WiFi.connect("SSID","PASSWORD")
 
 while !WiFi.connected?
   sleep(1)
