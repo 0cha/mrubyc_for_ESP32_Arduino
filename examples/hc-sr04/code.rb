@@ -1,6 +1,6 @@
 # encoding: utf-8
 class HCSR04
-  attr_accessor :duration, :distance, :before_distance
+  attr_accessor :duration, :distance, :prev_distance
   EchoPin = 12
   TrigPin = 13
   def initialize
@@ -27,11 +27,11 @@ class HCSR04
   end
 
   def lpf(a = 0.8)
-    if(!@before_distance)
-      @before_distance = @distance
+    if(!@prev_distance)
+      @prev_distance = @distance
     else
-      @distance = a * @before_distance + (1 - a) * @distance
-      @before_distance = @distance
+      @distance = a * @prev_distance + (1 - a) * @distance
+      @prev_distance = @distance
     end
   end
 end
@@ -41,5 +41,5 @@ hcsr04.initialize
 
 while true
   puts "#{hcsr04.distance} cm"
-  sleep_ms(500)
+  sleep_ms(100)
 end
