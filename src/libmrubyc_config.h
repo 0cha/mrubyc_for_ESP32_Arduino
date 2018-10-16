@@ -15,11 +15,11 @@
 //#define USE_GPS_NEO6M
 //#define USE_RTC
 //#define USE_M5AVATAR
-//#define USE_WIFI 
-//#define USE_HTTP_CLIENT
-//#define USE_BMP085
-//#define USE_RPR0521RS
-//#define USE_HC_SR04
+#define USE_WIFI 
+#define USE_HTTP_CLIENT
+#define USE_BMP085
+#define USE_RPR0521RS
+#define USE_HC_SR04
 /* for remote mrib */
 //#define ENABLE_RMIRB
 
