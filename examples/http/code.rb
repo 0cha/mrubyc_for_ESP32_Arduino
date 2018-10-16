@@ -28,7 +28,7 @@ Lcd.set_text_size(3)
 Lcd.set_text_color(:BLACK)
 temp_sensor = TemperatureSensor.new
 
-WiFi.connect("aterm-64a087-g","2a6b14815f363")
+WiFi.connect("SSID","PASSWORD")
 
 while !WiFi.connected?
   sleep(1)
