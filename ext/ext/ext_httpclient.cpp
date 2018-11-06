@@ -11,7 +11,7 @@ static void class_http_client_begin(mrb_vm *vm, mrb_value *v, int argc){
   const char *uri = reinterpret_cast<const char *>(GET_STRING_ARG(3));
   int port = GET_INT_ARG(2);
 
-  if(GET_TT_ARG(4) == MRB_TT_STRING){
+  if(GET_TT_ARG(4) == MRBC_TT_STRING){
     const char *root_ca = reinterpret_cast<const char *>(GET_STRING_ARG(4));
     http.begin(host, port, uri, root_ca);
   } else {

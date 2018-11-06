@@ -12,7 +12,7 @@
 #include "ext.h"
 #include <M5Stack.h>
 
-static uint16_t sym_to_colorcode(mrb_sym sym_in){
+static uint16_t sym_to_colorcode(mrbc_sym sym_in){
 	uint16_t col = BLACK;
 
 	if(sym_in == str_to_symid("WHITE")){
@@ -31,12 +31,12 @@ static uint16_t sym_to_colorcode(mrb_sym sym_in){
 	return col;
 }
 static int arg_to_colorcode(mrb_value *v, int no, uint16_t* col){
-	mrb_sym sym_in;
-	if(GET_TT_ARG(no) == MRB_TT_SYMBOL){
+	mrbc_sym sym_in;
+	if(GET_TT_ARG(no) == MRBC_TT_SYMBOL){
 		sym_in = GET_INT_ARG(no);
-	}else if(GET_TT_ARG(no) == MRB_TT_STRING){
+	}else if(GET_TT_ARG(no) == MRBC_TT_STRING){
 		sym_in = str_to_symid((const char *)GET_STRING_ARG(no));
-	}else if(GET_TT_ARG(no) == MRB_TT_FIXNUM){
+	}else if(GET_TT_ARG(no) == MRBC_TT_FIXNUM){
 		*col = GET_INT_ARG(no);
 		return true;
 	}else{
@@ -106,7 +106,7 @@ static void class_lcd_set_text_color(mrb_vm *vm, mrb_value *v, int argc ){
 }
 static void class_lcd_set_text_size(mrb_vm *vm, mrb_value *v, int argc ){
 	int16_t size=1;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		size = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();

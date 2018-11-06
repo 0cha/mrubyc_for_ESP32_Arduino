@@ -10,9 +10,9 @@
 #include "mrubyc_for_ESP32_Arduino.h"
 #include "ext.h"
 
-bool mrbc_trans_cppbool_value(mrb_vtype tt)
+bool mrbc_trans_cppbool_value(mrbc_vtype tt)
 {
-	if(tt==MRB_TT_TRUE){
+	if(tt==MRBC_TT_TRUE){
 		return true;
 	}
 	return false;
@@ -34,8 +34,8 @@ void mrbc_define_methods(void)
 #ifdef USE_RPR0521RS
   define_rpr0521rs_class();
 #endif
-#ifdef USE_HC_SR04
-  define_hc_src4_class();
+#ifdef USE_MSGPACK
+  define_msgpack_class();
 #endif
 	//define_esp32_class();
 #ifdef ARDUINO_M5Stack_Core_ESP32

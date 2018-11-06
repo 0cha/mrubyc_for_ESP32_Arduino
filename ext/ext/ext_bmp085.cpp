@@ -33,11 +33,11 @@ static void class_bmp085_readSealevelPressure(mrb_vm *vm, mrb_value *v, int argc
   float pascal;
   float sea_press;
   switch(GET_TT_ARG(1)){
-  case MRB_TT_FIXNUM:
+  case MRBC_TT_FIXNUM:
     pascal = (float)GET_INT_ARG(1);
     sea_press = bmp.readSealevelPressure(pascal);
     break;
-  case MRB_TT_FLOAT:
+  case MRBC_TT_FLOAT:
     pascal = (float)GET_FLOAT_ARG(1);
     sea_press = bmp.readSealevelPressure(pascal);
     break;

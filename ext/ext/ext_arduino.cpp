@@ -19,7 +19,7 @@ static void class_arduino_delay(mrb_vm *vm, mrb_value *v, int argc )
 	SET_TRUE_RETURN();
 }
 
-static uint8_t sym_to_pinmode(mrb_sym sym_in){
+static uint8_t sym_to_pinmode(mrbc_sym sym_in){
 	uint8_t mode = INPUT;
 
 	if(sym_in == str_to_symid("INPUT")){
@@ -32,7 +32,7 @@ static uint8_t sym_to_pinmode(mrb_sym sym_in){
 	return mode;
 }
 
-static uint8_t sym_to_siglevel(mrb_sym sym_in){
+static uint8_t sym_to_siglevel(mrbc_sym sym_in){
 	uint8_t sig = LOW;
 
 	if(sym_in == str_to_symid("HIGH")){
@@ -46,7 +46,7 @@ static uint8_t sym_to_siglevel(mrb_sym sym_in){
 static void class_arduino_pin_mode(mrb_vm *vm, mrb_value *v, int argc )
 {
 	int pin = 0;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();
@@ -55,10 +55,10 @@ static void class_arduino_pin_mode(mrb_vm *vm, mrb_value *v, int argc )
 	//DEBUG_PRINT("pin=");
 	//DEBUG_PRINTLN(pin);
 	
-	mrb_sym sym_in = 0;
-	if(GET_TT_ARG(2) == MRB_TT_SYMBOL){
+	mrbc_sym sym_in = 0;
+	if(GET_TT_ARG(2) == MRBC_TT_SYMBOL){
 		sym_in = GET_INT_ARG(2);
-	}else if(GET_TT_ARG(2) == MRB_TT_STRING){
+	}else if(GET_TT_ARG(2) == MRBC_TT_STRING){
 		sym_in = str_to_symid((const char *)GET_STRING_ARG(2));
 	}else{
 		SET_FALSE_RETURN();
@@ -75,16 +75,16 @@ static void class_arduino_pin_mode(mrb_vm *vm, mrb_value *v, int argc )
 static void class_arduino_digital_write(mrb_vm *vm, mrb_value *v, int argc )
 {
 	int pin = 0;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();
 		return;
 	}
-	mrb_sym sym_in = 0;
-	if(GET_TT_ARG(2) == MRB_TT_SYMBOL){
+	mrbc_sym sym_in = 0;
+	if(GET_TT_ARG(2) == MRBC_TT_SYMBOL){
 		sym_in = GET_INT_ARG(2);
-	}else if(GET_TT_ARG(2) == MRB_TT_STRING){
+	}else if(GET_TT_ARG(2) == MRBC_TT_STRING){
 		sym_in = str_to_symid((const char *)GET_STRING_ARG(2));
 	}else{
 		SET_FALSE_RETURN();
@@ -98,7 +98,7 @@ static void class_arduino_digital_write(mrb_vm *vm, mrb_value *v, int argc )
 static void class_arduino_digital_read(mrb_vm *vm, mrb_value *v, int argc )
 {
 	int pin = 0;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();
@@ -111,7 +111,7 @@ static void class_arduino_digital_read(mrb_vm *vm, mrb_value *v, int argc )
 static void class_arduino_analog_read(mrb_vm *vm, mrb_value *v, int argc )
 {
 	int pin = 0;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();
@@ -126,20 +126,20 @@ static void class_arduino_random(mrb_vm *vm, mrb_value *v, int argc )
 	int32_t i=0;
 	int32_t min=0,max=0;
 	if(argc==2){
-		if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+		if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 			min = GET_INT_ARG(1);
 		}else{
 			SET_FALSE_RETURN();
 			return;
 		}
-		if(GET_TT_ARG(2) == MRB_TT_FIXNUM){
+		if(GET_TT_ARG(2) == MRBC_TT_FIXNUM){
 			max = GET_INT_ARG(2);
 		}else{
 			SET_FALSE_RETURN();
 			return;
 		}
 	}else if(argc==1){
-		if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+		if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 			max = GET_INT_ARG(1);
 		}else{
 			SET_FALSE_RETURN();
@@ -158,16 +158,16 @@ static void class_arduino_delayMicroseconds(mrb_vm *vm, mrb_value *v, int argc )
 }
 static void class_arduino_pulse_in(mrb_vm *vm, mrb_value *v, int argc ){
   int pin = 0;
-	if(GET_TT_ARG(1) == MRB_TT_FIXNUM){
+	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
 		SET_FALSE_RETURN();
 		return;
 	}
-	mrb_sym sym_in = 0;
-	if(GET_TT_ARG(2) == MRB_TT_SYMBOL){
+	mrbc_sym sym_in = 0;
+	if(GET_TT_ARG(2) == MRBC_TT_SYMBOL){
 		sym_in = GET_INT_ARG(2);
-	}else if(GET_TT_ARG(2) == MRB_TT_STRING){
+	}else if(GET_TT_ARG(2) == MRBC_TT_STRING){
 		sym_in = str_to_symid((const char *)GET_STRING_ARG(2));
 	}else{
 		SET_FALSE_RETURN();

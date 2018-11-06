@@ -23,10 +23,10 @@ static Avatar *avatar=NULL;
 static void class_m5avatar_initialize(mrb_vm *vm, mrb_value *v, int argc ){
 	/*
 	char* arg1 = NULL;
-	if(argc>1 && GET_TT_ARG(1)==MRB_TT_STRING){
+	if(argc>1 && GET_TT_ARG(1)==MRBC_TT_STRING){
 		arg1 = GET_STRING_ARG(1);
 	}
-	if(argc>1 && GET_TT_ARG(1)!=MRB_TT_STRING){
+	if(argc>1 && GET_TT_ARG(1)!=MRBC_TT_STRING){
 		DEBUG_PRINTLN("class_m5avatar_initialize:ERROR");
 		SET_FALSE_RETURN();
 		return;
@@ -42,7 +42,7 @@ static void class_m5avatar_initialize(mrb_vm *vm, mrb_value *v, int argc ){
 }
 static void class_m5avatar_speech(mrb_vm *vm, mrb_value *v, int argc ){
 	char* arg1 = NULL;
-	if(GET_TT_ARG(1) == MRB_TT_STRING){
+	if(GET_TT_ARG(1) == MRBC_TT_STRING){
 		arg1 = (char*)GET_STRING_ARG(1);
 	}else{
 		DEBUG_PRINTLN("class_m5avatar_speech:ERROR");

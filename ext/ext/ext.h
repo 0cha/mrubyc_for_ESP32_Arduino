@@ -15,7 +15,7 @@
 
 #define RECV_BUFF_SIZE 1024
 
-bool mrbc_trans_cppbool_value(mrb_vtype tt);
+bool mrbc_trans_cppbool_value(mrbc_vtype tt);
 void define_arduino_class(void);
 void define_serial_class(void);
 #ifdef USE_WIFI
@@ -30,8 +30,8 @@ void define_bmp085_class(void);
 #ifdef USE_RPR0521RS
 void define_rpr0521rs_class(void);
 #endif
-#ifdef USE_HC_SR04
-void define_hc_sr04_class(void);
+#ifdef USE_MSGPACK
+void define_msgpack_class(void);
 #endif
 #ifdef ARDUINO_M5Stack_Core_ESP32
 void define_m5stack_class(void);
