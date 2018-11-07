@@ -18,6 +18,9 @@
 bool mrbc_trans_cppbool_value(mrbc_vtype tt);
 void define_arduino_class(void);
 void define_serial_class(void);
+#ifdef USE_ARDUINO_TIME
+void define_arduino_time(void);
+#endif
 #ifdef USE_WIFI
 void define_wifi_class(void);
 #endif

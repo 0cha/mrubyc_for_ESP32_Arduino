@@ -15,11 +15,12 @@
 //#define USE_GPS_NEO6M
 //#define USE_RTC
 //#define USE_M5AVATAR
+#define USE_ARDUINO_TIME
 #define USE_WIFI 
 #define USE_HTTP_CLIENT
 #define USE_BMP085
 #define USE_RPR0521RS
-#define USE_MSGPACK
+//#define USE_MSGPACK
 /* for remote mrib */
 //#define ENABLE_RMIRB
 
