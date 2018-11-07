@@ -157,7 +157,7 @@ static void class_arduino_delayMicroseconds(mrb_vm *vm, mrb_value *v, int argc )
   delayMicroseconds(time);
 }
 static void class_arduino_pulse_in(mrb_vm *vm, mrb_value *v, int argc ){
-  int pin = 0;
+	int pin = 0;
 	if(GET_TT_ARG(1) == MRBC_TT_FIXNUM){
 		pin = GET_INT_ARG(1);
 	}else{
@@ -175,8 +175,9 @@ static void class_arduino_pulse_in(mrb_vm *vm, mrb_value *v, int argc ){
 	}
 	uint8_t sig = sym_to_siglevel( sym_in );
   
-  SET_INT_RETURN(pulseIn(pin, sig));
+	SET_INT_RETURN(pulseIn(pin, sig));
 }
+
 void define_arduino_class()
 {
 	mrb_class *class_arduino;
@@ -188,7 +189,7 @@ void define_arduino_class()
 	mrbc_define_method(0, class_arduino, "analog_read", class_arduino_analog_read);
 	mrbc_define_method(0, class_arduino, "random", class_arduino_random);
 	mrbc_define_method(0, class_arduino, "delayMicroseconds", class_arduino_delayMicroseconds);
-  mrbc_define_method(0, class_arduino, "pulseIn", class_arduino_pulse_in);
+	mrbc_define_method(0, class_arduino, "pulseIn", class_arduino_pulse_in);
 }
 
 static HardwareSerial* HwSerial = NULL;
