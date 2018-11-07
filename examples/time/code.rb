@@ -7,10 +7,11 @@ daylightOffset_sec = 0
 if(WiFi.connected?)
   puts "WiFi connected"
   puts "IP: #{WiFi.local_ip}"
-  Arduino.configTime(gmOffset_sec, daylightOffset_sec, 'ntp.jst.mfeed.ad.jp')
+  now_date = Arduino.new
+  now_date.configTime(gmOffset_sec, daylightOffset_sec, 'ntp.jst.mfeed.ad.jp')
   while true
-    puts Arduino.time
-    puts "#{Arduino.year}/#{Arduino.month}/#{Arduino.day}(#{Arduino.wday}) #{Arduino.hour}:#{Arduino.min}:#{Arduino.sec}"
+    puts now_date.time
+    puts "#{now_date.year}/#{now_date.month}/#{now_date.day}(#{now_date.wday}) #{now_date.hour}:#{now_date.min}:#{now_date.sec}"
     sleep(1)
   end
 end
