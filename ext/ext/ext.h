@@ -30,6 +30,9 @@ void define_http_client_class(void);
 #ifdef USE_BMP085
 void define_bmp085_class(void);
 #endif
+#ifdef USE_BME280
+void define_bme280_class(void);
+#endif
 #ifdef USE_RPR0521RS
 void define_rpr0521rs_class(void);
 #endif

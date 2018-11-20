@@ -20,6 +20,7 @@
 #define USE_HTTP_CLIENT
 #define USE_BMP085
 #define USE_RPR0521RS
+#define USE_BME280
 //#define USE_MSGPACK
 /* for remote mrib */
 //#define ENABLE_RMIRB

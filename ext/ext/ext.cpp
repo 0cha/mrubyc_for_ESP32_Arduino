@@ -34,6 +34,9 @@ void mrbc_define_methods(void)
 #ifdef USE_BMP085
 	define_bmp085_class();
 #endif
+#ifdef USE_BME280
+	define_bme280_class();
+#endif
 #ifdef USE_RPR0521RS
 	define_rpr0521rs_class();
 #endif
