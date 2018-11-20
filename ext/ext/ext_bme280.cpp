@@ -66,7 +66,7 @@ void define_bme280_class(void){
   mrbc_define_method(0, class_bme280, "set_mode", class_bme280_set_mode);
   mrbc_define_method(0, class_bme280, "read_data", class_bme280_read_data);
   mrbc_define_method(0, class_bme280, "temperature", class_bme280_temperature);
-  mrbc_define_method(0, class_bme280, "pressure", class_bme280_temperature);
+  mrbc_define_method(0, class_bme280, "pressure", class_bme280_pressure);
   mrbc_define_method(0, class_bme280, "humidity", class_bme280_humidity); 
 }
 #endif
