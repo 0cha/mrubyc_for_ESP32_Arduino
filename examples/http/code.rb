@@ -34,23 +34,25 @@ while !WiFi.connected?
   sleep(1)
 end
 
-http = HTTPClient.new()
-if(WiFi.connected?)
-  puts "connected!"
-  http.begin("192.168.2.250", 80, "/iot_rails/temperatures.json")
-  http.addHeader("Content-Type", "application/json")
-end
+
 
 temp = 0.0
-
-while true
-   temp = temp_sensor.get(35)
-   Lcd.set_cursor(0,0)
-   Lcd.printf("temp: #{temp}")
-   Lcd.set_cursor(0,21)
-   Lcd.printf("IP: #{WiFi.local_ip}")
-   http.post('{"temperature": {"temp": ' + temp.to_s +  '}}')
-   sleep(300)
-   Lcd.fill_screen(:WHITE)
-   M5.update()
+if(WiFi.connected?)
+  while true
+    http = HTTPClient.new()
+    http.begin("192.168.2.250", 80, "/iot_rails/temperatures.json")
+    http.addHeader("Content-Type", "application/json")
+    http.addHeader("Connection", "close")
+    
+    temp = temp_sensor.get(35)
+    Lcd.set_cursor(0,0)
+    Lcd.printf("temp: #{temp}")
+    Lcd.set_cursor(0,21)
+    Lcd.printf("IP: #{WiFi.local_ip}")
+    http.post('{"temperature": {"temp": ' + temp.to_s +  '}}')
+    http.stop()
+    sleep(300)
+    Lcd.fill_screen(:WHITE)
+    M5.update()
+  end
 end
