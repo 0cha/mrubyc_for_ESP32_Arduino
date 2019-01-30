@@ -46,24 +46,26 @@ static void class_arduino_config_time(mrb_vm *vm, mrb_value *v, int argc ){
 	SET_TRUE_RETURN();
 }
 static void class_arduino_time(mrb_vm *vm, mrb_value *v, int argc ){
-	char buf[20];
+	char buf[40];
 	t = time(NULL);
 	tm = localtime(&t);
 	year     = tm->tm_year + 1900;
-	month    = tm->tm_mon;
+	month    = tm->tm_mon + 1;
 	day      = tm->tm_mday;
 	wday     = tm->tm_wday;
 	hour     = tm->tm_hour;
 	minute   = tm->tm_min;
 	sec      = tm->tm_sec;
 	sprintf(buf,
-					"%04d/%02d/%02d %02d:%02d:%02d",
+					"%04d/%02d/%02d(%d) %02d:%02d:%02d",
 					tm->tm_year + 1900,
-					tm->tm_mon,
+					tm->tm_mon + 1,
 					tm->tm_mday,
+          tm->tm_wday,
 					tm->tm_hour,
 					tm->tm_min,
 					tm->tm_sec
+	
 					);
 	mrb_value time_s = mrbc_string_new_cstr(vm, buf);
 	SET_RETURN(time_s);
