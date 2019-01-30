@@ -30,16 +30,15 @@ static void class_http_client_post(mrb_vm *vm, mrb_value *v, int argc){
   const char *data = reinterpret_cast<const char *>(GET_STRING_ARG(1));
   http.POST((uint8_t *)data, strlen(data));
 }
-static void class_http_client_stop(mrb_vm *vm, mrb_value *v, int argc){
-  http.stop();
+static void class_http_client_end(mrb_vm *vm, mrb_value *v, int argc){
+  http.end();
 }
-
 void define_http_client_class(void){
   mrb_class *class_http_client;
   class_http_client = mrbc_define_class(0,"HTTPClient", mrbc_class_object);
   mrbc_define_method(0, class_http_client, "begin", class_http_client_begin);
   mrbc_define_method(0, class_http_client, "addHeader", class_http_client_add_header);
   mrbc_define_method(0, class_http_client, "post", class_http_client_post);
-  mrbc_define_method(0, class_http_client, "stop", class_http_client_stop);
+  mrbc_define_method(0, class_http_client, "end", class_http_client_end);
 }
 #endif
