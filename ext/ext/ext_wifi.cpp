@@ -39,6 +39,17 @@ static void class_wifi_scan_networks(mrb_vm *vm, mrb_value *v, int argc){
     SET_RETURN(ssids);
   }
 }
+static void class_wifi_mac_address(mrb_vm *vm, mrb_value *v, int argc){
+  byte mac[6];
+  char buf[20];
+  
+  WiFi.macAddress(mac);
+  
+  sprintf(buf,"%02X:%02X:%02X:%02X:%02X:%02X",mac[0],mac[1],mac[2],mac[3],mac[4],mac[5]);
+  mrb_value mac_address = mrbc_string_new_cstr(vm, buf);
+  SET_RETURN(mac_address);
+}
+
 void define_wifi_class(void){
   mrb_class *class_wifi;
   class_wifi = mrbc_define_class(0, "WiFi", mrbc_class_object);
@@ -47,5 +58,6 @@ void define_wifi_class(void){
   mrbc_define_method(0, class_wifi, "disocnnect", class_wifi_disconnect);
   mrbc_define_method(0, class_wifi, "scan_networks", class_wifi_scan_networks);
   mrbc_define_method(0, class_wifi, "connected?", class_wifi_wl_connected);
+  mrbc_define_method(0, class_wifi, "macAddress", class_wifi_mac_address);
 }
 #endif
