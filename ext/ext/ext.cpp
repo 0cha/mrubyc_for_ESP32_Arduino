@@ -40,9 +40,9 @@ void mrbc_define_methods(void)
 #ifdef USE_RPR0521RS
 	define_rpr0521rs_class();
 #endif
-#ifdef USE_MSGPACK
-	define_msgpack_class();
-#endif
+#ifdef USE_KXG03
+	define_kxg03_class();
+#endif 
 	//define_esp32_class();
 #ifdef ARDUINO_M5Stack_Core_ESP32
 	define_m5stack_class();
