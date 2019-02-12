@@ -1,3 +1,8 @@
+/******************
+ Dependent: SWITCH SCIENCE Arduino Library KXG03
+ https://github.com/SWITCHSCIENCE/samplecodes/blob/master/Conta/2775_KXG03_module/KXG03.zip
+******************/
+
 #include "mrubyc_for_ESP32_Arduino.h"
 #ifdef USE_KXG03
 #include "Arduino.h"
