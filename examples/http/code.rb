@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+
+# This code use the  'Math' class.
+# Edit: mrubyc/src/vm_config.h
+# 67: #define MRBC_USE_MATH 0
+# to
+# 67: #define MRBC_USE_MATH 1
+
 class Array
   def each
     idx = 0

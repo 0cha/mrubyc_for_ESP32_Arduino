@@ -1,3 +1,9 @@
+# This code use the  'Math' class.
+# Edit: mrubyc/src/vm_config.h
+# 67: #define MRBC_USE_MATH 0
+# to
+# 67: #define MRBC_USE_MATH 1
+
 PI = 3.141592653589793
 def abs(val)
   if(val < 0)
