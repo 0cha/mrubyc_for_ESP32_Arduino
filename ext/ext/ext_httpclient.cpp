@@ -28,7 +28,8 @@ static void class_http_client_add_header(mrb_vm *vm, mrb_value *v, int argc){
 }
 static void class_http_client_post(mrb_vm *vm, mrb_value *v, int argc){
   const char *data = reinterpret_cast<const char *>(GET_STRING_ARG(1));
-  http.POST((uint8_t *)data, strlen(data));
+  int status = http.POST((uint8_t *)data, strlen(data));
+  SET_INT_RETURN(status);
 }
 static void class_http_client_end(mrb_vm *vm, mrb_value *v, int argc){
   http.end();
