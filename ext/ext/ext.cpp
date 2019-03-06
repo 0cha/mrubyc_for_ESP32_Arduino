@@ -42,7 +42,10 @@ void mrbc_define_methods(void)
 #endif
 #ifdef USE_KXG03
 	define_kxg03_class();
-#endif 
+#endif
+#ifdef USE_MPU6050
+	define_mpu6050_class();
+#endif  
 	//define_esp32_class();
 #ifdef ARDUINO_M5Stack_Core_ESP32
 	define_m5stack_class();

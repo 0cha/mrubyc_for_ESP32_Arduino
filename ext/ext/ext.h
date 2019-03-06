@@ -39,6 +39,9 @@ void define_rpr0521rs_class(void);
 #ifdef USE_KXG03
 void define_kxg03_class(void);
 #endif
+#ifdef USE_MPU6050
+void define_mpu6050_class(void);
+#endif
 #ifdef ARDUINO_M5Stack_Core_ESP32
 void define_m5stack_class(void);
 #ifdef USE_M5AVATAR
