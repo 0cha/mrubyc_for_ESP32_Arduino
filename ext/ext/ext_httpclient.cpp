@@ -26,6 +26,11 @@ static void class_http_client_add_header(mrb_vm *vm, mrb_value *v, int argc){
   http.addHeader(header, mime);
   SET_TRUE_RETURN();
 }
+static void class_http_client_get(mrb_vm *vm, mrb_value *v, int argc){
+  http.GET();
+  mrb_value payload = mrbc_string_new_cstr(vm, http.getString().c_str());
+  SET_RETURN(payload);
+}
 static void class_http_client_post(mrb_vm *vm, mrb_value *v, int argc){
   const char *data = reinterpret_cast<const char *>(GET_STRING_ARG(1));
   int status = http.POST((uint8_t *)data, strlen(data));
@@ -39,6 +44,7 @@ void define_http_client_class(void){
   class_http_client = mrbc_define_class(0,"HTTPClient", mrbc_class_object);
   mrbc_define_method(0, class_http_client, "begin", class_http_client_begin);
   mrbc_define_method(0, class_http_client, "addHeader", class_http_client_add_header);
+  mrbc_define_method(0, class_http_client, "get", class_http_client_get);
   mrbc_define_method(0, class_http_client, "post", class_http_client_post);
   mrbc_define_method(0, class_http_client, "end", class_http_client_end);
 }
