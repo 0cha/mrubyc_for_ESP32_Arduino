@@ -70,6 +70,15 @@ static void class_arduino_time(mrb_vm *vm, mrb_value *v, int argc ){
 	mrb_value time_s = mrbc_string_new_cstr(vm, buf);
 	SET_RETURN(time_s);
 }
+static void class_arduino_get_local_time(mrb_vm *vm, mrb_value *v, int argc ){
+	struct tm tm_l;
+	if(!getLocalTime(&tm_l)){
+		SET_FALSE_RETURN();
+	} else {
+		time(&t);
+		SET_INT_RETURN((int)t);
+	}
+}
 static void class_arduino_year(mrb_vm *vm, mrb_value *v, int argc ){
 	SET_INT_RETURN(year);
 }
@@ -97,6 +106,7 @@ void define_arduino_time(void){
 	class_arduino = mrbc_define_class(0, "Arduino", mrbc_class_object);
 	mrbc_define_method(0, class_arduino, "configTime", class_arduino_config_time);
 	mrbc_define_method(0, class_arduino, "time", class_arduino_time);
+	mrbc_define_method(0, class_arduino, "getLocalTime", class_arduino_get_local_time);
 	mrbc_define_method(0, class_arduino, "year", class_arduino_year);
 	mrbc_define_method(0, class_arduino, "month", class_arduino_month);
 	mrbc_define_method(0, class_arduino, "day", class_arduino_day);
