@@ -1,9 +1,9 @@
 #include "mrubyc_for_ESP32_Arduino.h"
 
-#ifdef USE_BMP085
+#ifdef USE_BME280
 #include "Arduino.h"
-#include <SSCI_BME280.h>
 #include "ext.h"
+#include <SSCI_BME280.h>
 SSCI_BME280 bme280;
 uint8_t addr = 0x76;
 double temperature, pressure, humidity;
