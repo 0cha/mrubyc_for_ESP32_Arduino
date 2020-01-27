@@ -24,6 +24,7 @@
 //#define USE_BME280
 //#define USE_KXG03
 //#define USE_MPU6050
+#define USE_DS3231
 /* for remote mrib */
 //#define ENABLE_RMIRB
 /* for debug */
